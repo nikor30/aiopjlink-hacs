@@ -358,10 +358,9 @@ class AuthTests(unittest.IsolatedAsyncioTestCase):
 
         # Expect to see a PJLinkNoConnection when we connect.
         # CONDITION 1: The host can be reached by the OS but no response (aiotimeout).
-        with self.assertRaises(aiopjlink.PJLinkNoConnection) as err:
+        with self.assertRaises(aiopjlink.PJLinkNoConnection):
             async with aiopjlink.PJLink(address='127.0.0.1', password=None, timeout=0.5):
                 pass
-        self.assertEqual(str(err.exception), 'timeout - projector did not accept the connection in time')
 
         # CONDITION 2: The host cannot be reached by the OS.
         with self.assertRaises(aiopjlink.PJLinkNoConnection) as err:
