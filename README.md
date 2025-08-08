@@ -82,3 +82,32 @@ Pull requests with test cases are welcome. There are still some things to finish
 
 * [ ] Search Protocol (§3.2)
 * [ ] Status Notification Prototol (§3.3)
+
+## Sony VPL Home Assistant Integration
+
+This repository also contains a Home Assistant custom integration for Sony VPL projectors. It uses the PJLink protocol to provide remote-like controls. Think of PJLink as a universal language that most projectors understand; this integration acts as the interpreter, allowing Home Assistant to talk to the projector over the network instead of via infrared signals.
+
+### Installation
+
+1. Add this repository to [HACS](https://hacs.xyz) as a custom repository.
+2. Install the **Sony VPL Projector** integration.
+3. Add the following to your `configuration.yaml`:
+
+```yaml
+sony_vpl:
+  host: 192.168.1.120
+  password: secret
+```
+
+### Available commands
+
+Use the `remote.send_command` service with the created entity. Supported commands include:
+
+- `power_on` / `power_off`
+- `input_hdmi1` / `input_hdmi2`
+- `shutter_open` / `shutter_close`
+- `mute_audio` / `unmute_audio`
+- `mute_video` / `unmute_video`
+- `freeze_on` / `freeze_off`
+
+These options mirror the essential buttons on the physical remote, letting Home Assistant operate the projector like a virtual clicker.
